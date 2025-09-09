@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-blue-green
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-blue-green
+  template:
+    metadata:
+      labels:
+        app: nginx-blue-green
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:1.25.1 # This is your initial version, the "blue" one
+        ports:
+        - containerPort: 80
