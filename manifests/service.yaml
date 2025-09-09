@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-primary-svc
+  annotations:
+    harness.io/primary-service: "true" # Harness recognizes this as the main service for live traffic
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: nginx-blue-green
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-stage-svc
+  annotations:
+    harness.io/stage-service: "true" # Harness recognizes this as the temporary service for the new version
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: nginx-blue-green
