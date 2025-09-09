@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-blue-green
+  name: flask-blue-green
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: nginx-blue-green
+      app: flask-blue-green
   template:
     metadata:
       labels:
-        app: nginx-blue-green
+        app: flask-blue-green
     spec:
       containers:
-      - name: nginx-container
-        image: nginx:1.26.0 # Change this to the new version
+      - name: flask-container
+        image: ganesh243/flask-app:1.0.0 # This is your initial version
         ports:
-        - containerPort: 80
+        - containerPort: 5000
