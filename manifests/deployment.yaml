@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: flask-container
-        image: ganesh243/flask-app:1.0.0 # This is your initial version
+        image: ganesh243/flask-app:2.0.0 # Change the image to your green version
         ports:
         - containerPort: 5000
