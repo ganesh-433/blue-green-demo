@@ -5,7 +5,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Copy the application code
-COPY app.py .
+COPY /app/app.py .
 
 # Install dependencies
 RUN pip install Flask
