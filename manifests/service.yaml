@@ -1,27 +1,27 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-primary-svc
+  name: flask-primary-svc
   annotations:
-    harness.io/primary-service: "true" # Harness recognizes this as the main service for live traffic
+    harness.io/primary-service: "true"
 spec:
   type: LoadBalancer
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 5000
   selector:
-    app: nginx-blue-green
+    app: flask-blue-green
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-stage-svc
+  name: flask-stage-svc
   annotations:
-    harness.io/stage-service: "true" # Harness recognizes this as the temporary service for the new version
+    harness.io/stage-service: "true"
 spec:
   type: ClusterIP
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 5000
   selector:
-    app: nginx-blue-green
+    app: flask-blue-green
